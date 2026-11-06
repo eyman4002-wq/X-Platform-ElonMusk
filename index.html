@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Store | منصة البرمجيات الاحترافية</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #16181c;
+            --border-color: #2f3336;
+            --text-main: #e7e9ea;
+            --text-sub: #71767b;
+            --accent-white: #ffffff;
+            --accent-green: #00ba7c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .x-logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--accent-white);
+            font-family: monospace;
+        }
+
+        .lang-btn {
+            background-color: transparent;
+            color: var(--accent-white);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .lang-btn:hover {
+            background-color: #181818;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #53575b;
+            transform: translateY(-2px);
+        }
+
+        .card-header h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.25rem;
+            color: var(--accent-white);
+        }
+
+        .version-badge {
+            background: #202327;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-desc {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .buy-btn {
+            background-color: var(--accent-white);
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: block;
+            transition: opacity 0.2s;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        .payment-section {
+            margin-top: 4rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .payment-id {
+            font-size: 1.2rem;
+            font-family: monospace;
+            background: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: inline-block;
+            margin: 0.5rem 0;
+            color: var(--accent-green);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-sub);
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+
+        [dir="ltr"] .card-header h3 { font-family: sans-serif; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+            <span class="x-logo">𝕏</span>
+            <span id="header-title" style="font-weight: 700; font-size: 1.1rem;">منصة البرمجة المتطورة</span>
+        </div>
+        <button class="lang-btn" onclick="toggleLanguage()" id="lang-toggle-btn">English</button>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1 id="hero-title">𝕏 SOFTWARE PLATFORM</h1>
+            <p id="hero-subtitle">الأنظمة والحلول التكنولوجية الاحترافية بأعلى جودة وأفضل إصدارات</p>
+        </div>
+
+        <div class="grid" id="apps-container"></div>
+
+        <div class="payment-section">
+            <h2 id="pay-title">💳 وسائل الدفع والتأكيد المباشر</h2>
+            <p id="pay-desc">قم بتحويل المبلغ عبر منصة بينانس المباشرة واستلم تطبيقك فوراً:</p>
+            <div>Binance Pay ID:</div>
+            <div class="payment-id">1111766085</div>
+            <p id="pay-contact" style="color: var(--text-sub); margin-top: 1rem;">
+                أرسل لقطة الشاشة واسم التطبيق للتفعيل عبر واتساب: <strong>00967770378514</strong>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 𝕏 Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 'cyber', ver: 'V20', price: 100, ar: { name: 'SAMI-CYBER-LAB', desc: 'مختبر الأمن السيبراني واختبار الثغرات الشامل' }, en: { name: 'SAMI-CYBER-LAB', desc: 'Comprehensive cybersecurity and vulnerability lab' } },
+            { id: 'netcore', ver: 'PRO', price: 90, ar: { name: 'NETCORE-X', desc: 'النواة البرمجية الشاملة لربط وحماية شبكات الاتصالات' }, en: { name: 'NETCORE-X', desc: 'Core framework for networking and connectivity' } },
+            { id: 'rescue', ver: 'V23', price: 80, ar: { name: 'SAMI-X AI PHONE RESCUE', desc: 'نظام صيانة وإنقاذ الأجهزة بالذكاء الاصطناعي' }, en: { name: 'SAMI-X AI PHONE RESCUE', desc: 'AI-powered phone maintenance and rescue system' } },
+            { id: 'wificore', ver: 'Brain', price: 70, ar: { name: 'WIFIX-CONTROL-X NETWORK BRAIN', desc: 'الذكاء الشبكي ومتحكم السيرفرات والشبكات' }, en: { name: 'WIFIX-CONTROL-X NETWORK BRAIN', desc: 'Advanced network control and server brain' } },
+            { id: 'noc', ver: 'V5 PRO', price: 60, ar: { name: 'NetworkNOC PRO', desc: 'مركز إدارة عمليات الشبكة والإنترنت' }, en: { name: 'NetworkNOC PRO', desc: 'Network Operations Center management platform' } },
+            { id: 'netmgmt', ver: 'Release', price: 50, ar: { name: 'NetworkManagement-Sami', desc: 'لوحة تحكم وإدارة الشبكات والأجهزة المحلية' }, en: { name: 'NetworkManagement-Sami', desc: 'Local network and device management panel' } },
+            { id: 'wifixv2', ver: 'V2 Final', price: 45, ar: { name: 'WIFIX-CONTROL-X', desc: 'نظام تقوية وإدارة شبكات الوايفاي للموبايل' }, en: { name: 'WIFIX-CONTROL-X', desc: 'Mobile Wi-Fi network optimizer and controller' } },
+            { id: 'globalrescue', ver: 'V2 Fixed', price: 40, ar: { name: 'SAMI-X-GLOBAL-RESCUE', desc: 'أداة الطوارئ والإنقاذ الشاملة للأنظمة' }, en: { name: 'SAMI-X-GLOBAL-RESCUE', desc: 'Global system emergency rescue toolkit' } },
+            { id: 'guardian', ver: 'V2', price: 35, ar: { name: 'SAMI-X-MOBILE-GUARDIAN', desc: 'تطبيق الحارس الأمني لتحصين أجهزة الأندرويد' }, en: { name: 'SAMI-X-MOBILE-GUARDIAN', desc: 'Android mobile security guardian application' } },
+            { id: 'lifelink', ver: 'V5', price: 30, ar: { name: 'SAMI-X-LIFE-LINK', desc: 'نظام الربط والتوافق الرقمي' }, en: { name: 'SAMI-X-LIFE-LINK', desc: 'Digital integration and linkage system' } },
+            { id: 'nexus', ver: 'V1', price: 25, ar: { name: 'SAMI-NEXUS', desc: 'منصة ربط الخدمات وتنسيق البيانات' }, en: { name: 'SAMI-NEXUS', desc: 'Service integration and data synchronization' } },
+            { id: 'gwifi', ver: 'V3 Release', price: 20, ar: { name: 'G-WiFi-Control', desc: 'تطبيق التحكم بأجهزة وموزعات الوايفاي' }, en: { name: 'G-WiFi-Control', desc: 'Wi-Fi router and distributor management app' } },
+            { id: 'stylematch', ver: 'V14', price: 15, ar: { name: 'SAMI-STYLE-MATCH', desc: 'أداة تنسيق ومطابقة الواجهات والأنماط' }, en: { name: 'SAMI-STYLE-MATCH', desc: 'UI style matching and optimization tool' } },
+            { id: 'viruses', ver: 'V13', price: 12, ar: { name: 'PhoneViruses-SAMI', desc: 'أداة كشف وااختبار الملفات الضارة' }, en: { name: 'PhoneViruses-SAMI', desc: 'Malware detection and security tool' } },
+            { id: 'printer', ver: 'V14', price: 10, ar: { name: 'UniversalPrinterWiFi', desc: 'تطبيق الطباعة اللاسلكية عبر الوايفاي' }, en: { name: 'UniversalPrinterWiFi', desc: 'Universal Wi-Fi wireless printing application' } },
+            { id: 'guard', ver: 'V13', price: 8, ar: { name: 'PhoneGuard', desc: 'تطبيق الحماية والأمان الخفيف للأجهزة' }, en: { name: 'PhoneGuard', desc: 'Lightweight device security and privacy protection' } },
+            { id: 'magicwall', ver: 'V13', price: 6, ar: { name: 'SamiMagicWallpaper', desc: 'تطبيق الخلفيات والتأثيرات البصرية الحية' }, en: { name: 'SamiMagicWallpaper', desc: 'Live dynamic wallpaper and visual effects app' } },
+            { id: 'clockwall', ver: 'V14 PRO', price: 5, ar: { name: 'SamiClockWallpaper', desc: 'تطبيق الساعة التفاعلية والخلفية الحية' }, en: { name: 'SamiClockWallpaper', desc: 'Interactive clock live wallpaper application' } }
+        ];
+
+        let currentLang = 'ar';
+
+        function renderApps() {
+            const container = document.getElementById('apps-container');
+            container.innerHTML = '';
+
+            products.forEach(item => {
+                const data = item[currentLang];
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3>${data.name}</h3>
+                        <span class="version-badge">${currentLang === 'ar' ? 'الإصدار' : 'Version'}: ${item.ver}</span>
+                        <div class="card-desc">${data.desc}</div>
+                    </div>
+                    <div>
+                        <div class="price-tag">$${item.price} USDT</div>
+                        <a href="https://wa.me/967770378514?text=${encodeURIComponent((currentLang === 'ar' ? 'أريد شراء تطبيق: ' : 'I want to purchase: ') + data.name)}" class="buy-btn" target="_blank">
+                            ${currentLang === 'ar' ? 'طلب فوري عبر WhatsApp' : 'Order via WhatsApp'}
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+
+            document.getElementById('lang-toggle-btn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+            document.getElementById('header-title').innerText = currentLang === 'ar' ? 'منصة البرمجة المتطورة' : 'Advanced Software Platform';
+            document.getElementById('hero-title').innerText = currentLang === 'ar' ? '𝕏 SOFTWARE PLATFORM' : '𝕏 SOFTWARE PLATFORM';
+            document.getElementById('hero-subtitle').innerText = currentLang === 'ar' ? 'الأنظمة والحلول التكنولوجية الاحترافية بأعلى جودة وأفضل إصدارات' : 'Professional software systems and technology solutions';
+            document.getElementById('pay-title').innerText = currentLang === 'ar' ? '💳 وسائل الدفع والتأكيد المباشر' : '💳 Direct Payment Methods';
+            document.getElementById('pay-desc').innerText = currentLang === 'ar' ? 'قم بتحويل المبلغ عبر منصة بينانس المباشرة واستلم تطبيقك فوراً:' : 'Transfer payment directly via Binance Pay ID to receive your app:';
+            document.getElementById('pay-contact').innerHTML = currentLang === 'ar' ? 
+                'أرسل لقطة الشاشة واسم التطبيق للتفعيل عبر واتساب: <strong>00967770378514</strong>' : 
+                'Send transaction screenshot & app name via WhatsApp: <strong>00967770378514</strong>';
+
+            renderApps();
+        }
+
+        // Initialize App
+        renderApps();
+    </script>
+</body>
+</html>
