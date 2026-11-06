@@ -182,29 +182,6 @@
             border-top: 1px solid var(--border-color);
             margin-top: 4rem;
         }
-
-        [dir="ltr"] .card-header h3 { font-family: sans-serif; }
-
-        .app-art {
-            display:block;
-            width:100%;
-            height:190px;
-            object-fit:contain;
-            border-radius:13px;
-            margin:0 auto 18px;
-            background:linear-gradient(135deg,#101b2d,#090d17);
-            border:1px solid #2f4054;
-            transition:transform .25s ease, border-color .25s ease;
-        }
-        .card:hover .app-art {
-            transform:scale(1.025);
-            border-color:#00ba7c;
-        }
-        @media(max-width:480px) {
-            .app-art { height:170px; }
-            .card { padding:1rem; }
-        }
-
     </style>
 </head>
 <body>
@@ -254,8 +231,8 @@
             { id: 'lifelink', ver: 'V5', price: 30, ar: { name: 'SAMI-X-LIFE-LINK', desc: 'نظام الربط والتوافق الرقمي' }, en: { name: 'SAMI-X-LIFE-LINK', desc: 'Digital integration and linkage system' } },
             { id: 'nexus', ver: 'V1', price: 25, ar: { name: 'SAMI-NEXUS', desc: 'منصة ربط الخدمات وتنسيق البيانات' }, en: { name: 'SAMI-NEXUS', desc: 'Service integration and data synchronization' } },
             { id: 'gwifi', ver: 'V3 Release', price: 20, ar: { name: 'G-WiFi-Control', desc: 'تطبيق التحكم بأجهزة وموزعات الوايفاي' }, en: { name: 'G-WiFi-Control', desc: 'Wi-Fi router and distributor management app' } },
-            { id: 'stylematch', ver: 'V14', price: 15, ar: { name: 'SAMI-STYLE-MATCH', desc: 'أداة تنسيق ومطابقة الواجهات والأنماط' }, en: { name: 'SAMI-STYLE-MATCH', desc: 'UI style matching and optimization tool' } },
-            { id: 'viruses', ver: 'V13', price: 12, ar: { name: 'PhoneViruses-SAMI', desc: 'أداة كشف وااختبار الملفات الضارة' }, en: { name: 'PhoneViruses-SAMI', desc: 'Malware detection and security tool' } },
+            { id: 'stylematch', ver: 'V14 / V10', price: 15, ar: { name: 'SAMI-STYLE-MATCH', desc: 'أداة تنسيق ومطابقة الواجهات والأنماط والحماية' }, en: { name: 'SAMI-STYLE-MATCH', desc: 'UI style matching and security tool' } },
+            { id: 'viruses', ver: 'V13', price: 12, ar: { name: 'PhoneViruses-SAMI', desc: 'أداة كشف واختبار الملفات الضارة' }, en: { name: 'PhoneViruses-SAMI', desc: 'Malware detection and security tool' } },
             { id: 'printer', ver: 'V14', price: 10, ar: { name: 'UniversalPrinterWiFi', desc: 'تطبيق الطباعة اللاسلكية عبر الوايفاي' }, en: { name: 'UniversalPrinterWiFi', desc: 'Universal Wi-Fi wireless printing application' } },
             { id: 'guard', ver: 'V13', price: 8, ar: { name: 'PhoneGuard', desc: 'تطبيق الحماية والأمان الخفيف للأجهزة' }, en: { name: 'PhoneGuard', desc: 'Lightweight device security and privacy protection' } },
             { id: 'magicwall', ver: 'V13', price: 6, ar: { name: 'SamiMagicWallpaper', desc: 'تطبيق الخلفيات والتأثيرات البصرية الحية' }, en: { name: 'SamiMagicWallpaper', desc: 'Live dynamic wallpaper and visual effects app' } },
@@ -273,11 +250,6 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <img class="app-art"
-                         src="assets/app-images/${item.id}.svg"
-                         alt="${data.name}"
-                         loading="lazy"
-                         onerror="this.style.display='none'">
                     <div class="card-header">
                         <h3>${data.name}</h3>
                         <span class="version-badge">${currentLang === 'ar' ? 'الإصدار' : 'Version'}: ${item.ver}</span>
@@ -312,7 +284,6 @@
             renderApps();
         }
 
-        // Initialize App
         renderApps();
     </script>
 </body>
