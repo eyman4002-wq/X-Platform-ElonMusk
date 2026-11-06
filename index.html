@@ -96,7 +96,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 1.5rem;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -106,6 +106,31 @@
         .card:hover {
             border-color: #53575b;
             transform: translateY(-2px);
+        }
+
+        .app-img-container {
+            width: 100%;
+            height: 140px;
+            background: #0f1115;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .app-img-container img {
+            max-height: 80px;
+            max-width: 80px;
+            object-fit: contain;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .card-header h3 {
@@ -219,24 +244,114 @@
 
     <script>
         const products = [
-            { id: 'cyber', ver: 'V20', price: 100, ar: { name: 'SAMI-CYBER-LAB', desc: 'مختبر الأمن السيبراني واختبار الثغرات الشامل' }, en: { name: 'SAMI-CYBER-LAB', desc: 'Comprehensive cybersecurity and vulnerability lab' } },
-            { id: 'netcore', ver: 'PRO', price: 90, ar: { name: 'NETCORE-X', desc: 'النواة البرمجية الشاملة لربط وحماية شبكات الاتصالات' }, en: { name: 'NETCORE-X', desc: 'Core framework for networking and connectivity' } },
-            { id: 'rescue', ver: 'V23', price: 80, ar: { name: 'SAMI-X AI PHONE RESCUE', desc: 'نظام صيانة وإنقاذ الأجهزة بالذكاء الاصطناعي' }, en: { name: 'SAMI-X AI PHONE RESCUE', desc: 'AI-powered phone maintenance and rescue system' } },
-            { id: 'wificore', ver: 'Brain', price: 70, ar: { name: 'WIFIX-CONTROL-X NETWORK BRAIN', desc: 'الذكاء الشبكي ومتحكم السيرفرات والشبكات' }, en: { name: 'WIFIX-CONTROL-X NETWORK BRAIN', desc: 'Advanced network control and server brain' } },
-            { id: 'noc', ver: 'V5 PRO', price: 60, ar: { name: 'NetworkNOC PRO', desc: 'مركز إدارة عمليات الشبكة والإنترنت' }, en: { name: 'NetworkNOC PRO', desc: 'Network Operations Center management platform' } },
-            { id: 'netmgmt', ver: 'Release', price: 50, ar: { name: 'NetworkManagement-Sami', desc: 'لوحة تحكم وإدارة الشبكات والأجهزة المحلية' }, en: { name: 'NetworkManagement-Sami', desc: 'Local network and device management panel' } },
-            { id: 'wifixv2', ver: 'V2 Final', price: 45, ar: { name: 'WIFIX-CONTROL-X', desc: 'نظام تقوية وإدارة شبكات الوايفاي للموبايل' }, en: { name: 'WIFIX-CONTROL-X', desc: 'Mobile Wi-Fi network optimizer and controller' } },
-            { id: 'globalrescue', ver: 'V2 Fixed', price: 40, ar: { name: 'SAMI-X-GLOBAL-RESCUE', desc: 'أداة الطوارئ والإنقاذ الشاملة للأنظمة' }, en: { name: 'SAMI-X-GLOBAL-RESCUE', desc: 'Global system emergency rescue toolkit' } },
-            { id: 'guardian', ver: 'V2', price: 35, ar: { name: 'SAMI-X-MOBILE-GUARDIAN', desc: 'تطبيق الحارس الأمني لتحصين أجهزة الأندرويد' }, en: { name: 'SAMI-X-MOBILE-GUARDIAN', desc: 'Android mobile security guardian application' } },
-            { id: 'lifelink', ver: 'V5', price: 30, ar: { name: 'SAMI-X-LIFE-LINK', desc: 'نظام الربط والتوافق الرقمي' }, en: { name: 'SAMI-X-LIFE-LINK', desc: 'Digital integration and linkage system' } },
-            { id: 'nexus', ver: 'V1', price: 25, ar: { name: 'SAMI-NEXUS', desc: 'منصة ربط الخدمات وتنسيق البيانات' }, en: { name: 'SAMI-NEXUS', desc: 'Service integration and data synchronization' } },
-            { id: 'gwifi', ver: 'V3 Release', price: 20, ar: { name: 'G-WiFi-Control', desc: 'تطبيق التحكم بأجهزة وموزعات الوايفاي' }, en: { name: 'G-WiFi-Control', desc: 'Wi-Fi router and distributor management app' } },
-            { id: 'stylematch', ver: 'V14 / V10', price: 15, ar: { name: 'SAMI-STYLE-MATCH', desc: 'أداة تنسيق ومطابقة الواجهات والأنماط والحماية' }, en: { name: 'SAMI-STYLE-MATCH', desc: 'UI style matching and security tool' } },
-            { id: 'viruses', ver: 'V13', price: 12, ar: { name: 'PhoneViruses-SAMI', desc: 'أداة كشف واختبار الملفات الضارة' }, en: { name: 'PhoneViruses-SAMI', desc: 'Malware detection and security tool' } },
-            { id: 'printer', ver: 'V14', price: 10, ar: { name: 'UniversalPrinterWiFi', desc: 'تطبيق الطباعة اللاسلكية عبر الوايفاي' }, en: { name: 'UniversalPrinterWiFi', desc: 'Universal Wi-Fi wireless printing application' } },
-            { id: 'guard', ver: 'V13', price: 8, ar: { name: 'PhoneGuard', desc: 'تطبيق الحماية والأمان الخفيف للأجهزة' }, en: { name: 'PhoneGuard', desc: 'Lightweight device security and privacy protection' } },
-            { id: 'magicwall', ver: 'V13', price: 6, ar: { name: 'SamiMagicWallpaper', desc: 'تطبيق الخلفيات والتأثيرات البصرية الحية' }, en: { name: 'SamiMagicWallpaper', desc: 'Live dynamic wallpaper and visual effects app' } },
-            { id: 'clockwall', ver: 'V14 PRO', price: 5, ar: { name: 'SamiClockWallpaper', desc: 'تطبيق الساعة التفاعلية والخلفية الحية' }, en: { name: 'SamiClockWallpaper', desc: 'Interactive clock live wallpaper application' } }
+            { 
+                id: 'cyber', ver: 'V20', price: 100, 
+                img: 'https://cdn-icons-png.flaticon.com/512/2092/2092663.png',
+                ar: { name: 'SAMI-CYBER-LAB', desc: 'مختبر الأمن السيبراني واختبار الثغرات الشامل' }, 
+                en: { name: 'SAMI-CYBER-LAB', desc: 'Comprehensive cybersecurity and vulnerability lab' } 
+            },
+            { 
+                id: 'netcore', ver: 'PRO', price: 90, 
+                img: 'https://cdn-icons-png.flaticon.com/512/2881/2881144.png',
+                ar: { name: 'NETCORE-X', desc: 'النواة البرمجية الشاملة لربط وحماية شبكات الاتصالات' }, 
+                en: { name: 'NETCORE-X', desc: 'Core framework for networking and connectivity' } 
+            },
+            { 
+                id: 'rescue', ver: 'V23', price: 80, 
+                img: 'https://cdn-icons-png.flaticon.com/512/2921/2921222.png',
+                ar: { name: 'SAMI-X AI PHONE RESCUE', desc: 'نظام صيانة وإنقاذ الأجهزة بالذكاء الاصطناعي' }, 
+                en: { name: 'SAMI-X AI PHONE RESCUE', desc: 'AI-powered phone maintenance and rescue system' } 
+            },
+            { 
+                id: 'wificore', ver: 'Brain', price: 70, 
+                img: 'https://cdn-icons-png.flaticon.com/512/931/931941.png',
+                ar: { name: 'WIFIX-CONTROL-X NETWORK BRAIN', desc: 'الذكاء الشبكي ومتحكم السيرفرات والشبكات' }, 
+                en: { name: 'WIFIX-CONTROL-X NETWORK BRAIN', desc: 'Advanced network control and server brain' } 
+            },
+            { 
+                id: 'noc', ver: 'V5 PRO', price: 60, 
+                img: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png',
+                ar: { name: 'NetworkNOC PRO', desc: 'مركز إدارة عمليات الشبكة والإنترنت' }, 
+                en: { name: 'NetworkNOC PRO', desc: 'Network Operations Center management platform' } 
+            },
+            { 
+                id: 'netmgmt', ver: 'Release', price: 50, 
+                img: 'https://cdn-icons-png.flaticon.com/512/1570/1570887.png',
+                ar: { name: 'NetworkManagement-Sami', desc: 'لوحة تحكم وإدارة الشبكات والأجهزة المحلية' }, 
+                en: { name: 'NetworkManagement-Sami', desc: 'Local network and device management panel' } 
+            },
+            { 
+                id: 'wifixv2', ver: 'V2 Final', price: 45, 
+                img: 'https://cdn-icons-png.flaticon.com/512/931/931941.png',
+                ar: { name: 'WIFIX-CONTROL-X', desc: 'نظام تقوية وإدارة شبكات الوايفاي للموبايل' }, 
+                en: { name: 'WIFIX-CONTROL-X', desc: 'Mobile Wi-Fi network optimizer and controller' } 
+            },
+            { 
+                id: 'globalrescue', ver: 'V2 Fixed', price: 40, 
+                img: 'https://cdn-icons-png.flaticon.com/512/2910/2910795.png',
+                ar: { name: 'SAMI-X-GLOBAL-RESCUE', desc: 'أداة الطوارئ والإنقاذ الشاملة للأنظمة' }, 
+                en: { name: 'SAMI-X-GLOBAL-RESCUE', desc: 'Global system emergency rescue toolkit' } 
+            },
+            { 
+                id: 'guardian', ver: 'V2', price: 35, 
+                img: 'https://cdn-icons-png.flaticon.com/512/1023/1023656.png',
+                ar: { name: 'SAMI-X-MOBILE-GUARDIAN', desc: 'تطبيق الحارس الأمني لتحصين أجهزة الأندرويد' }, 
+                en: { name: 'SAMI-X-MOBILE-GUARDIAN', desc: 'Android mobile security guardian application' } 
+            },
+            { 
+                id: 'lifelink', ver: 'V5', price: 30, 
+                img: 'https://cdn-icons-png.flaticon.com/512/3209/3209995.png',
+                ar: { name: 'SAMI-X-LIFE-LINK', desc: 'نظام الربط والتوافق الرقمي' }, 
+                en: { name: 'SAMI-X-LIFE-LINK', desc: 'Digital integration and linkage system' } 
+            },
+            { 
+                id: 'nexus', ver: 'V1', price: 25, 
+                img: 'https://cdn-icons-png.flaticon.com/512/3067/3067408.png',
+                ar: { name: 'SAMI-NEXUS', desc: 'منصة ربط الخدمات وتنسيق البيانات' }, 
+                en: { name: 'SAMI-NEXUS', desc: 'Service integration and data synchronization' } 
+            },
+            { 
+                id: 'gwifi', ver: 'V3 Release', price: 20, 
+                img: 'https://cdn-icons-png.flaticon.com/512/931/931941.png',
+                ar: { name: 'G-WiFi-Control', desc: 'تطبيق التحكم بأجهزة وموزعات الوايفاي' }, 
+                en: { name: 'G-WiFi-Control', desc: 'Wi-Fi router and distributor management app' } 
+            },
+            { 
+                id: 'stylematch', ver: 'V14 / V10', price: 15, 
+                img: 'https://cdn-icons-png.flaticon.com/512/1160/1160358.png',
+                ar: { name: 'SAMI-STYLE-MATCH', desc: 'أداة تنسيق ومطابقة الواجهات والأنماط والحماية' }, 
+                en: { name: 'SAMI-STYLE-MATCH', desc: 'UI style matching and security tool' } 
+            },
+            { 
+                id: 'viruses', ver: 'V13', price: 12, 
+                img: 'https://cdn-icons-png.flaticon.com/512/1023/1023718.png',
+                ar: { name: 'PhoneViruses-SAMI', desc: 'أداة كشف واختبار الملفات الضارة' }, 
+                en: { name: 'PhoneViruses-SAMI', desc: 'Malware detection and security tool' } 
+            },
+            { 
+                id: 'printer', ver: 'V14', price: 10, 
+                img: 'https://cdn-icons-png.flaticon.com/512/2933/2933888.png',
+                ar: { name: 'UniversalPrinterWiFi', desc: 'تطبيق الطباعة اللاسلكية عبر الوايفاي' }, 
+                en: { name: 'UniversalPrinterWiFi', desc: 'Universal Wi-Fi wireless printing application' } 
+            },
+            { 
+                id: 'guard', ver: 'V13', price: 8, 
+                img: 'https://cdn-icons-png.flaticon.com/512/2092/2092657.png',
+                ar: { name: 'PhoneGuard', desc: 'تطبيق الحماية والأمان الخفيف للأجهزة' }, 
+                en: { name: 'PhoneGuard', desc: 'Lightweight device security and privacy protection' } 
+            },
+            { 
+                id: 'magicwall', ver: 'V13', price: 6, 
+                img: 'https://cdn-icons-png.flaticon.com/512/3342/3342137.png',
+                ar: { name: 'SamiMagicWallpaper', desc: 'تطبيق الخلفيات والتأثيرات البصرية الحية' }, 
+                en: { name: 'SamiMagicWallpaper', desc: 'Live dynamic wallpaper and visual effects app' } 
+            },
+            { 
+                id: 'clockwall', ver: 'V14 PRO', price: 5, 
+                img: 'https://cdn-icons-png.flaticon.com/512/3652/3652191.png',
+                ar: { name: 'SamiClockWallpaper', desc: 'تطبيق الساعة التفاعلية والخلفية الحية' }, 
+                en: { name: 'SamiClockWallpaper', desc: 'Interactive clock live wallpaper application' } 
+            }
         ];
 
         let currentLang = 'ar';
@@ -250,16 +365,21 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div class="card-header">
-                        <h3>${data.name}</h3>
-                        <span class="version-badge">${currentLang === 'ar' ? 'الإصدار' : 'Version'}: ${item.ver}</span>
-                        <div class="card-desc">${data.desc}</div>
+                    <div class="app-img-container">
+                        <img src="${item.img}" alt="${data.name}">
                     </div>
-                    <div>
-                        <div class="price-tag">$${item.price} USDT</div>
-                        <a href="https://wa.me/967770378514?text=${encodeURIComponent((currentLang === 'ar' ? 'أريد شراء تطبيق: ' : 'I want to purchase: ') + data.name)}" class="buy-btn" target="_blank">
-                            ${currentLang === 'ar' ? 'طلب فوري عبر WhatsApp' : 'Order via WhatsApp'}
-                        </a>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3>${data.name}</h3>
+                            <span class="version-badge">${currentLang === 'ar' ? 'الإصدار' : 'Version'}: ${item.ver}</span>
+                            <div class="card-desc">${data.desc}</div>
+                        </div>
+                        <div>
+                            <div class="price-tag">$${item.price} USDT</div>
+                            <a href="https://wa.me/967770378514?text=${encodeURIComponent((currentLang === 'ar' ? 'أريد شراء تطبيق: ' : 'I want to purchase: ') + data.name)}" class="buy-btn" target="_blank">
+                                ${currentLang === 'ar' ? 'طلب فوري عبر WhatsApp' : 'Order via WhatsApp'}
+                            </a>
+                        </div>
                     </div>
                 `;
                 container.appendChild(card);
